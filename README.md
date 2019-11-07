@@ -1,0 +1,1 @@
+# clemson-ssh-config-generator
