@@ -72,6 +72,7 @@ if __name__ == "__main__":
         print("File {} already exists.".format(CONFIG_FILE))
         print("Append (a) or Overwrite (w)?")
         write_mode = input("[a] >>> ")
+        print()
 
         write_mode = 'a' if write_mode not in ['w', 'a'] else write_mode
 
