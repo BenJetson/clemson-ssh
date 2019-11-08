@@ -80,7 +80,7 @@ if __name__ == "__main__":
     with open(CONFIG_FILE, write_mode) as config_file:
         for prefix, suffixes in SERVERS.items():
             # Pick a random suffix from this list for the canonical host.
-            if len(suffixes) > 1:
+            if NO_SUFFIX[0] not in suffixes:
                 hostname = prefix + random.choice(suffixes)
                 add_config(config_file, username, hostname, prefix)
 
