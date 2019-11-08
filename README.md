@@ -1,4 +1,4 @@
-# clemson-ssh-config-generator
+# clemson-ssh
 
 Script to create SSH host aliases for Clemson SoC machines.
 
@@ -31,7 +31,7 @@ ssh host
 It's easy. Download a copy of the script and run it in one line:
 
 ```
-python3 <(curl -s https://raw.githubusercontent.com/BenJetson/clemson-ssh-config-generator/master/generator.py)
+python3 <(curl -s https://raw.githubusercontent.com/BenJetson/clemson-ssh/master/generator.py)
 ```
 
 Then just follow the prompts.
