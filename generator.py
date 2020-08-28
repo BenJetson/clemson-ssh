@@ -5,7 +5,6 @@ import random
 from typing import List
 
 CONFIG_FILE = os.path.expanduser("~/.ssh/config")
-SOC_DOMAIN = "computing.clemson.edu"
 
 
 def make_suffix_list(min: int, max: int) -> List[str]:
@@ -17,29 +16,52 @@ def make_suffix_list(min: int, max: int) -> List[str]:
     return out
 
 
-def add_config(config_file, username, hostname, alias=""):
-    alias = hostname if alias == "" else alias
-
-    config = "Host {}\n".format(alias)
-    config += "\tHostName {}.{}\n".format(hostname, SOC_DOMAIN)
-    config += "\tUser {}\n\n".format(username)
-
-    config_file.write(config)
-
-    print("Added: {} -> {}@{}.{}".format(alias, username, hostname, SOC_DOMAIN))
-
-
 NO_SUFFIX = [""]
 
 SERVERS = {
+    #
+    # Off-Campus Access Nodes
+    #
     "access": NO_SUFFIX + make_suffix_list(1, 2),
+    #
+    # Lab Machines
+    #
     "ada": make_suffix_list(1, 18),
     "babbage": make_suffix_list(1, 35),
     "joey": make_suffix_list(1, 21),
     "cerf": make_suffix_list(1, 30),
     "titan": make_suffix_list(1, 5),
     "newton": NO_SUFFIX,
+    #
+    # Webservers
+    #
+    "webapp": NO_SUFFIX,
+    "people": NO_SUFFIX,
 }
+
+SOC_DOMAIN = "computing.clemson.edu"
+SOC_ALT_DOMAIN = "cs.clemson.edu"
+
+ALT_DOMAIN_SERVERS = ["webapp", "people"]
+
+
+def add_config(config_file, username, hostname, alias=""):
+    alias = hostname if alias == "" else alias
+
+    domain = SOC_DOMAIN
+    for svr in ALT_DOMAIN_SERVERS:
+        if svr in hostname:
+            domain = SOC_ALT_DOMAIN
+            break
+
+    config = "Host {}\n".format(alias)
+    config += "\tHostName {}.{}\n".format(hostname, domain)
+    config += "\tUser {}\n\n".format(username)
+
+    config_file.write(config)
+
+    print("Added: {} -> {}@{}.{}".format(alias, username, hostname, SOC_DOMAIN))
+
 
 if __name__ == "__main__":
     print("Welcome! This program generates a ~/.ssh/config file that will")
