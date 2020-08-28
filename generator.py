@@ -7,10 +7,11 @@ from typing import List
 CONFIG_FILE = os.path.expanduser("~/.ssh/config")
 SOC_DOMAIN = "computing.clemson.edu"
 
+
 def make_suffix_list(min: int, max: int) -> List[str]:
     out = []
 
-    for i in range(min, max+1):
+    for i in range(min, max + 1):
         out.append(str(i))
 
     return out
@@ -25,8 +26,7 @@ def add_config(config_file, username, hostname, alias=""):
 
     config_file.write(config)
 
-    print("Added: {} -> {}@{}.{}" \
-        .format(alias, username, hostname, SOC_DOMAIN))
+    print("Added: {} -> {}@{}.{}".format(alias, username, hostname, SOC_DOMAIN))
 
 
 NO_SUFFIX = [""]
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     print("             This will alter how your SSH client works. Consider")
     print("             making a backup copy in case something goes wrong.")
     print()
-    print("Please type \"I AGREE\" to continue.")
+    print('Please type "I AGREE" to continue.')
 
     agreement = input(">>> ")
 
@@ -67,15 +67,14 @@ if __name__ == "__main__":
     username = input(">>> ")
     print()
 
-    write_mode = 'w' if not os.path.exists(CONFIG_FILE) else 'a'
-    if write_mode == 'a':
+    write_mode = "w" if not os.path.exists(CONFIG_FILE) else "a"
+    if write_mode == "a":
         print("File {} already exists.".format(CONFIG_FILE))
         print("Append (a) or Overwrite (w)?")
         write_mode = input("[a] >>> ")
         print()
 
-        write_mode = 'a' if write_mode not in ['w', 'a'] else write_mode
-
+        write_mode = "a" if write_mode not in ["w", "a"] else write_mode
 
     with open(CONFIG_FILE, write_mode) as config_file:
         for prefix, suffixes in SERVERS.items():
@@ -87,7 +86,7 @@ if __name__ == "__main__":
             for suffix in suffixes:
                 hostname = prefix + suffix
                 add_config(config_file, username, hostname)
-    
+
     random_hostname = random.choice(list(SERVERS.keys())[1:-1])
     random_suffix = random.choice(SERVERS[random_hostname])
 
@@ -95,8 +94,9 @@ if __name__ == "__main__":
     print("SUCCESS! Your SSH config now contains aliases for SoC machines.")
     print()
     print("Instead of typing all of this:")
-    print("\tssh {}@{}{}.{}".format(username, random_hostname, 
-        random_suffix, SOC_DOMAIN))
+    print(
+        "\tssh {}@{}{}.{}".format(username, random_hostname, random_suffix, SOC_DOMAIN)
+    )
     print("Try using an alias like so:")
     print("\tssh {}{}".format(random_hostname, random_suffix))
     print()
