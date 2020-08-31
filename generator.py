@@ -102,6 +102,18 @@ if __name__ == "__main__":
 
         write_mode = "a" if write_mode not in ["w", "a"] else write_mode
 
+    print("Would you like to use the SoC access node as a proxy for your")
+    print("connections? This will make it easier to SSH from off-campus.")
+    print()
+    print("This is not required if you are on-campus.")
+    print()
+    print("Enter y or n")
+    use_proxy = input("[y] >>> ")
+    print()
+
+    if "n" in use_proxy.lower():
+        JUMPBOX = None
+
     with open(CONFIG_FILE, write_mode) as config_file:
         for prefix, suffixes in SERVERS.items():
             # Pick a random suffix from this list for the canonical host.
