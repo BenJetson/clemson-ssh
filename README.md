@@ -26,6 +26,18 @@ a host number for you when you generate the configuration.
 ssh host
 ```
 
+## What about off campus?
+
+At the time of writing, all of us Clemson students are taking classes online, so
+off campus SSH is the norm.
+
+Ordinarily, you'd have to manually `ssh` to the `access` node first and then
+`ssh` to the box you really want. Fortunately, `ssh` has a built-in option to
+do this for you, called proxy jumping.
+
+The script will automatically set the access node as a proxy for you, unless
+you tell it not to during the setup wizard.
+
 ## Show me how!
 
 It's easy. Download a copy of the script and run it in one line:
@@ -45,6 +57,7 @@ machines. For each machine, it writes this to the file:
 Host <hostname>
 	HostName <hostname>.computing.clemson.edu
 	User <username>
+	ProxyJump access  # if you use proxy jumpbox
 ```
 
 ## Will this work on Windows?
