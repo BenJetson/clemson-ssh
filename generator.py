@@ -64,7 +64,7 @@ def add_config(config_file, username, hostname, alias=""):
 
     config_file.write(config)
 
-    print("Added: {} -> {}@{}.{}".format(alias, username, hostname, SOC_DOMAIN))
+    print("Added: {} -> {}@{}.{}".format(alias, username, hostname, domain))
 
 
 if __name__ == "__main__":
