@@ -125,7 +125,7 @@ if __name__ == "__main__":
                 hostname = prefix + suffix
                 add_config(config_file, username, hostname)
 
-    random_hostname = random.choice(list(SERVERS.keys())[1:-1])
+    random_hostname = random.choice(list(SERVERS.keys())[1:-3])
     random_suffix = random.choice(SERVERS[random_hostname])
 
     print()
