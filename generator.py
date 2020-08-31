@@ -39,6 +39,7 @@ SERVERS = {
     "people": NO_SUFFIX,
 }
 
+JUMPBOX = "access"
 SOC_DOMAIN = "computing.clemson.edu"
 SOC_ALT_DOMAIN = "cs.clemson.edu"
 
@@ -56,7 +57,10 @@ def add_config(config_file, username, hostname, alias=""):
 
     config = "Host {}\n".format(alias)
     config += "\tHostName {}.{}\n".format(hostname, domain)
-    config += "\tUser {}\n\n".format(username)
+    config += "\tUser {}\n".format(username)
+    if JUMPBOX is not None and JUMPBOX not in hostname:
+        config += "\tProxyJump {}\n".format(JUMPBOX)
+    config += "\n"
 
     config_file.write(config)
 
