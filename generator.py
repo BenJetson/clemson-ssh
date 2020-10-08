@@ -40,6 +40,8 @@ SERVERS = {
 }
 
 JUMPBOX = "access"
+FORWARD_AGENT = False
+
 SOC_DOMAIN = "computing.clemson.edu"
 SOC_ALT_DOMAIN = "cs.clemson.edu"
 
@@ -60,6 +62,8 @@ def add_config(config_file, username, hostname, alias=""):
     config += "\tUser {}\n".format(username)
     if JUMPBOX is not None and JUMPBOX not in hostname:
         config += "\tProxyJump {}\n".format(JUMPBOX)
+    if FORWARD_AGENT:
+        config += "\tForwardAgent yes\n"
     config += "\n"
 
     config_file.write(config)
@@ -113,6 +117,22 @@ if __name__ == "__main__":
 
     if "n" in use_proxy.lower():
         JUMPBOX = None
+
+    print("Would you like to make your local SSH agent available to the remote")
+    print("using SSH agent forwarding?")
+    print()
+    print("Using this feature has security implications, which you should")
+    print("understand before using it. Please review the documentation first:")
+    print("https://www.bengodfrey.net/clemson-ssh/agent.html")
+    print()
+    print("If you are not sure what this means, the answer is NO.")
+    print()
+    print("Enter y or n")
+    fwd = input("[n] >>> ")
+    print()
+
+    if "y" in fwd.lower():
+        FORWARD_AGENT = True
 
     with open(CONFIG_FILE, write_mode) as config_file:
         for prefix, suffixes in SERVERS.items():
