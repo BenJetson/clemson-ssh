@@ -38,7 +38,7 @@ Then just follow the prompts.
 
 ## FAQ
 
-- [What about off-campus?](agent.html)
+- [What about off-campus?](off-campus.html)
 - [What does this script actually do?](technical.html)
 - [Will this work on Windows?](windows.html)
 - [What is SSH agent forwarding and what are the risks?](agent.html)
