@@ -46,7 +46,7 @@ Then just follow the prompts.
 ## Official Resources
 
 - [CU: Acceptable Use Policy](https://idp.clemson.edu/password/policy.html)
-- [SoC: Linux Accounts](https://computing.clemson.edu/help/virtual.html)
+- [SoC: Linux Accounts](https://computing.clemson.edu/help/linuxaccount.html)
 - [SoC: SSH](https://computing.clemson.edu/help/ssh.html)
 - [SoC: Off Campus Access](https://computing.clemson.edu/help/remoteaccess.html)
 - [SoC: Remote Desktop](https://computing.clemson.edu/help/virtual.html)
