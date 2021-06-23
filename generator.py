@@ -43,22 +43,13 @@ JUMPBOX = "access"
 FORWARD_AGENT = False
 
 SOC_DOMAIN = "computing.clemson.edu"
-SOC_ALT_DOMAIN = "cs.clemson.edu"
-
-ALT_DOMAIN_SERVERS = ["webapp", "people"]
 
 
 def add_config(config_file, username, hostname, alias=""):
     alias = hostname if alias == "" else alias
 
-    domain = SOC_DOMAIN
-    for svr in ALT_DOMAIN_SERVERS:
-        if svr in hostname:
-            domain = SOC_ALT_DOMAIN
-            break
-
     config = "Host {}\n".format(alias)
-    config += "\tHostName {}.{}\n".format(hostname, domain)
+    config += "\tHostName {}.{}\n".format(hostname, SOC_DOMAIN)
     config += "\tUser {}\n".format(username)
     if JUMPBOX is not None and JUMPBOX not in hostname:
         config += "\tProxyJump {}\n".format(JUMPBOX)
@@ -68,7 +59,7 @@ def add_config(config_file, username, hostname, alias=""):
 
     config_file.write(config)
 
-    print("Added: {} -> {}@{}.{}".format(alias, username, hostname, domain))
+    print("Added: {} -> {}@{}.{}".format(alias, username, hostname, SOC_DOMAIN))
 
 
 if __name__ == "__main__":
