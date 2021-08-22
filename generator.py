@@ -27,10 +27,11 @@ SERVERS = {
     # Lab Machines
     #
     "ada": make_suffix_list(1, 18),
-    "babbage": make_suffix_list(1, 35),
-    "joey": make_suffix_list(1, 21),
+    "babbage": make_suffix_list(1, 34),
+    "joey": make_suffix_list(1, 18),
     "cerf": make_suffix_list(1, 30),
     "titan": make_suffix_list(1, 5),
+    "cirrus": make_suffix_list(1, 9),
     "newton": NO_SUFFIX,
     #
     # Webservers
